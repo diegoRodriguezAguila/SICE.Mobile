@@ -37,6 +37,7 @@
         <item name="android:displayOptions">useLogo|showHome|showTitle</item>
         <item name="elevation">0dp</item>
         <item name="displayOptions">useLogo|showHome|showTitle</item>
+        <item name="contentInsetLeft">0dp</item>
         <item name="contentInsetStart">0dp</item>
         <item name="android:titleTextStyle">@style/TextAppearance.Sice.ActionBar.TextStyle</item>
     </style>
