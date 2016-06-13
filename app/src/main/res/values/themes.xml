@@ -1,0 +1,30 @@
+<resources>
+
+    <!-- Alert Dialog AppCompat -->
+    <style name="Theme.Elfec.Sice.AlertDialog" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorPrimaryDark</item>
+        <item name="colorControlActivated">@color/colorPrimary</item>
+    </style>
+
+    <!-- Base application theme. -->
+    <style name="Theme.Elfec.Sice" parent="Theme.AppCompat">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorButtonNormal">@color/negativeButtonBackground</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowBackground">@color/backgroundColor</item>
+        <item name="android:textSelectHandleLeft">@drawable/text_select_handle_left_material</item>
+        <item name="android:textSelectHandleRight">@drawable/text_select_handle_right_material</item>
+        <item name="android:textSelectHandle">@drawable/text_select_handle_middle_material</item>
+        <item name="alertDialogTheme">@style/Theme.Elfec.Sice.AlertDialog</item>
+        <item name="android:actionBarStyle">@style/Widget.Sice.ActionBar</item>
+        <item name="android:windowTitleStyle">@style/TextAppearance.Sice.ActionBar.TextStyle</item>
+        <item name="homeAsUpIndicator">@null</item>
+    </style>
+
+</resources>
