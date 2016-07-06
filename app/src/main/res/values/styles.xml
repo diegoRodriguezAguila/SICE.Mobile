@@ -1,20 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <style name="TextAppearance.Elfec.Sice.Dialog.Title"
+           parent="TextAppearance.Montserrat.Title">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="fontPath">fonts/montserrat_ultra_light.otf</item>
+        <item name="android:textAppearance">@style/TextAppearance.Montserrat.Title</item>
+    </style>
+
     <style name="TextAppearance.Elfec.Sice.Widget.ActionBar.Title"
            parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
-        <item name="fontPath">fonts/montserrat_light.otf</item>
+        <item name="fontPath">fonts/montserrat_ultra_light.otf</item>
     </style>
 
     <style name="TextAppearance.Montserrat.Light" parent="TextAppearance.AppCompat">
-        <item name="fontPath">fonts/montserrat_light.otf</item>
+        <item name="fontPath">fonts/montserrat_ultra_light.otf</item>
     </style>
 
     <style name="TextAppearance.Montserrat.Headline" parent="TextAppearance.AppCompat.Headline">
-        <item name="fontPath">fonts/montserrat_light.otf</item>
+        <item name="fontPath">fonts/montserrat_ultra_light.otf</item>
     </style>
 
     <style name="TextAppearance.Montserrat.Title" parent="TextAppearance.AppCompat.Title">
-        <item name="fontPath">fonts/montserrat_light.otf</item>
+        <item name="fontPath">fonts/montserrat_ultra_light.otf</item>
         <item name="android:textSize">21sp</item>
     </style>
 
@@ -45,6 +53,6 @@
     <style name="TextAppearance.Sice.ActionBar.TextStyle"
            parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:textColor">@android:color/white</item>
-        <item name="fontPath">fonts/montserrat_light.otf</item>
+        <item name="fontPath">fonts/montserrat_ultra_light.otf</item>
     </style>
 </resources>

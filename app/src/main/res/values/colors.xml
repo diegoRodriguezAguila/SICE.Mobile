@@ -5,4 +5,5 @@
     <color name="colorAccent">#02296A</color>
     <color name="backgroundColor">#303030</color>
     <color name="negativeButtonBackground">#EFEFEF</color>
+    <color name="txtErrorColor">#B23426</color>
 </resources>

@@ -18,7 +18,8 @@ public class ElfecApp extends Application{
         super.onCreate();
 
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
-                .setDefaultFontPath("fonts/montserrat.otf").setFontAttrId(R.attr.fontPath).build());
+                .setDefaultFontPath("fonts/montserrat_light.otf").setFontAttrId(R.attr.fontPath)
+                .build());
         JodaTimeAndroid.init(this);
         AppPreferences.init(this);
     }

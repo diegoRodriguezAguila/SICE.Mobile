@@ -8,6 +8,13 @@ public class AccessToken {
     private String accessToken;
     private String tokenType;
 
+    public AccessToken(){}
+
+    public AccessToken(String accessToken, String tokenType) {
+        this.accessToken = accessToken;
+        this.tokenType = tokenType;
+    }
+
     public String getAccessToken() {
         return accessToken;
     }

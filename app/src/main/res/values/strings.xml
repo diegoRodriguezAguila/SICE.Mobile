@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Elfec Cortes Programados</string>
+
+    <!-- Login -->
+    <string name="title_login">Ingreso al sistema</string>
+    <string name="btn_login">Ingresar</string>
+    <string name="hint_username">Usuario de empresa</string>
+    <string name="hint_reg_token">Token de registro</string>
+    <string name="msg_login_user">Validando información de usuario empresarial&#8230;</string>
+
+
+    <!-- Buttons -->
+    <string name="btn_ok">Aceptar</string>
 </resources>

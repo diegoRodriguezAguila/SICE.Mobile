@@ -6,6 +6,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorPrimaryDark</item>
         <item name="colorControlActivated">@color/colorPrimary</item>
+        <item name="android:windowTitleStyle">@style/TextAppearance.Elfec.Sice.Dialog.Title</item>
     </style>
 
     <!-- Base application theme. -->
@@ -14,7 +15,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="colorButtonNormal">@color/negativeButtonBackground</item>
+        <item name="colorButtonNormal">@color/colorPrimary</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowBackground">@color/backgroundColor</item>

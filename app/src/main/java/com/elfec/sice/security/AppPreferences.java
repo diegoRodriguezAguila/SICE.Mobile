@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.elfec.sice.model.security.AccessToken;
+
 import java.lang.ref.SoftReference;
 
 /**
@@ -13,6 +15,7 @@ import java.lang.ref.SoftReference;
  */
 public class AppPreferences {
     private final String AUTH_TOKEN = "ws-token";
+    private final String TOKEN_TYPE = "ws-token-type";
     private final String REGISTRATION_TOKEN = "reg-token";
 
     /**
@@ -62,7 +65,6 @@ public class AppPreferences {
     /**
      * Obtiene el token de registración, guardado por el usuario
      *
-     *
      * @return null si es que aun no se registró token
      */
     public String getRegistrationToken() {
@@ -85,8 +87,12 @@ public class AppPreferences {
      *
      * @return null si es que no se autenticó el token de registración
      */
-    public String getAuthToken() {
-        return preferences.getString(AUTH_TOKEN, null);
+    public AccessToken getAccessToken() {
+        String tokenType = preferences.getString(TOKEN_TYPE, null);
+        String token = preferences.getString(AUTH_TOKEN, null);
+        if (tokenType == null || token == null)
+            return null;
+        return new AccessToken(token, tokenType);
     }
 
     /**
@@ -95,16 +101,27 @@ public class AppPreferences {
      *
      * @return la instancia actual de {@link AppPreferences}
      */
-    public AppPreferences setAuthToken(String loggedUsername) {
-        preferences.edit().putString(AUTH_TOKEN, loggedUsername).apply();
+    public AppPreferences setAccessToken(String tokenType, String token) {
+        preferences.edit().putString(AUTH_TOKEN, token)
+                .putString(TOKEN_TYPE, tokenType).apply();
         return this;
+    }
+
+    /**
+     * Verifica si existe un token de autenticación registrado.
+     * Si existe el usuario está autenticado
+     * @return true si el usuario está autenticado
+     */
+    public boolean isAuthenticated() {
+        String tokenType = preferences.getString(TOKEN_TYPE, null);
+        String token = preferences.getString(AUTH_TOKEN, null);
+        return tokenType != null && token != null;
     }
 
     /**
      * Elimina la instancia cacheada junto con su contexto
      */
     public static void dispose() {
-        context = null;
         if (appPreferencesInstanceRef != null)
             appPreferencesInstanceRef.clear();
         appPreferencesInstanceRef = null;
