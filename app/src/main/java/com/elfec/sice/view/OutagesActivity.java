@@ -31,7 +31,7 @@ public class OutagesActivity extends AppCompatActivity implements IOutagesView, 
 
     @Override
     public void onAuthenticated(String companyUsername) {
-        if(mLoginDialog!=null){
+        if (mLoginDialog != null) {
             mLoginDialog.dismiss();
             mPresenter.loadOutages();
         }
@@ -41,9 +41,9 @@ public class OutagesActivity extends AppCompatActivity implements IOutagesView, 
 
     @Override
     public void requestAuthentication() {
-        mLoginDialog =  new LoginFragment();
+        mLoginDialog = new LoginFragment();
         mLoginDialog.setCancelable(false);
-        mLoginDialog.show(getSupportFragmentManager(),"Login");
+        mLoginDialog.show(getSupportFragmentManager(), "Login");
     }
 
     //endregion
