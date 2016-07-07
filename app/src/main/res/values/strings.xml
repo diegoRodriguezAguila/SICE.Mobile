@@ -5,7 +5,9 @@
     <string name="title_login">Ingreso al sistema</string>
     <string name="btn_login">Ingresar</string>
     <string name="hint_username">Usuario de empresa</string>
+    <string name="error_username_empty">El usuario de empresa no puede estar vacío</string>
     <string name="hint_reg_token">Token de registro</string>
+    <string name="error_reg_token_empty">El token de registro no puede estar vacío</string>
     <string name="msg_login_user">Validando información de usuario empresarial&#8230;</string>
 
 

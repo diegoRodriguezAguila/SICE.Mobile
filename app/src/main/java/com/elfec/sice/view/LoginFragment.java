@@ -2,13 +2,14 @@ package com.elfec.sice.view;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.StringRes;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.Animation;
@@ -18,10 +19,17 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.elfec.sice.R;
+import com.elfec.sice.helpers.ui.ButtonClicksHelper;
+import com.elfec.sice.helpers.ui.KeyboardHelper;
+import com.elfec.sice.presenter.LoginPresenter;
+import com.elfec.sice.presenter.views.ILoginView;
 import com.elfec.sice.view.text.method.MetroPasswordTransformationMethod;
+
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,8 +39,9 @@ import butterknife.ButterKnife;
  * Use the {@link LoginFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class LoginFragment extends DialogFragment {
+public class LoginFragment extends DialogFragment implements ILoginView {
 
+    private LoginPresenter mPresenter;
     private OnLoginListener mListener;
 
     @BindView(R.id.input_username)
@@ -77,9 +86,16 @@ public class LoginFragment extends DialogFragment {
         super.onCreate(savedInstanceState);
     }
 
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onAuthenticated(null);
+    /**
+     * Click for logIn button
+     *
+     * @param v vista
+     */
+    @OnClick(R.id.btn_login)
+    public void btnLoginClick(View v) {
+        if (ButtonClicksHelper.canClickButton()) {
+            KeyboardHelper.hideKeyboard(getDialog().getCurrentFocus());
+            mPresenter.login();
         }
     }
 
@@ -101,6 +117,7 @@ public class LoginFragment extends DialogFragment {
         ButterKnife.bind(this, view);
         slideLeftAnim = AnimationUtils.loadAnimation(getContext(), R.anim.slide_left_in);
         mTxtToken.setTransformationMethod(MetroPasswordTransformationMethod.getInstance());
+        mPresenter = new LoginPresenter(this);
         return new AlertDialog.Builder(getActivity(), R.style.Theme_Elfec_Sice_AlertDialog)
                 .setTitle(R.string.title_login)
                 .setView(view)
@@ -112,6 +129,57 @@ public class LoginFragment extends DialogFragment {
         super.onDetach();
         mListener = null;
     }
+
+    private void checkUsername(String username) {
+        String error = null;
+        if (TextUtils.isEmpty(username)) {
+            error = getString(R.string.error_username_empty);
+        }
+        mInputUsername.setError(error);
+    }
+
+    private void checkToken(String token) {
+        String error = null;
+        if (TextUtils.isEmpty(token)) {
+            error = getString(R.string.error_reg_token_empty);
+        }
+        mInputToken.setError(error);
+    }
+
+    //region View Interface methods
+
+    @Override
+    public String getUsername() {
+        String username = mTxtUsername.getText().toString().trim()
+                .toLowerCase(Locale.getDefault());
+        checkUsername(username);
+        return username;
+    }
+
+    @Override
+    public String getRegToken() {
+        String token = mTxtToken.getText().toString().trim()
+                .toLowerCase(Locale.getDefault());
+        checkToken(token);
+        return token;
+    }
+
+    @Override
+    public void onProcessing(@StringRes int message) {
+
+    }
+
+    @Override
+    public void onError(Throwable error) {
+
+    }
+
+    @Override
+    public void onSuccess(String username) {
+
+    }
+
+    //endregion
 
     /**
      * This interface must be implemented by activities that contain this
