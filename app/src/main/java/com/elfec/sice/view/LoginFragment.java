@@ -5,13 +5,23 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.elfec.sice.R;
+import com.elfec.sice.view.text.method.MetroPasswordTransformationMethod;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,6 +34,26 @@ import com.elfec.sice.R;
 public class LoginFragment extends DialogFragment {
 
     private OnLoginListener mListener;
+
+    @BindView(R.id.input_username)
+    protected TextInputLayout mInputUsername;
+    @BindView(R.id.txt_username)
+    protected EditText mTxtUsername;
+    @BindView(R.id.input_token)
+    protected TextInputLayout mInputToken;
+    @BindView(R.id.txt_token)
+    protected EditText mTxtToken;
+    @BindView(R.id.layout_login_form)
+    protected LinearLayout mLayoutLoginForm;
+    @BindView(R.id.layout_loading)
+    protected LinearLayout mLayoutLoading;
+    @BindView(R.id.txt_waiting_message)
+    protected TextView mTxtWaitingMessage;
+    @BindView(R.id.layout_errors)
+    protected LinearLayout mLayoutErrors;
+    @BindView(R.id.txt_error_message)
+    protected TextView mTxtErrorMessage;
+    private Animation slideLeftAnim;
 
     public LoginFragment() {
         // Required empty public constructor
@@ -68,6 +98,9 @@ public class LoginFragment extends DialogFragment {
     @NonNull
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         View view = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_login, null, false);
+        ButterKnife.bind(this, view);
+        slideLeftAnim = AnimationUtils.loadAnimation(getContext(), R.anim.slide_left_in);
+        mTxtToken.setTransformationMethod(MetroPasswordTransformationMethod.getInstance());
         return new AlertDialog.Builder(getActivity(), R.style.Theme_Elfec_Sice_AlertDialog)
                 .setTitle(R.string.title_login)
                 .setView(view)
