@@ -1,8 +1,8 @@
 package com.elfec.sice.security;
 
-import com.elfec.sice.model.security.Session;
 import com.elfec.sice.model.security.AccessToken;
 import com.elfec.sice.model.security.AuthCredentials;
+import com.elfec.sice.model.security.Session;
 import com.elfec.sice.web_services.ServiceGenerator;
 import com.elfec.sice.web_services.endpoints.SessionService;
 
@@ -54,6 +54,7 @@ public class SessionManager {
                 .create(SessionService.class)
                 .logIn(new AuthCredentials(username, regToken))
                 .map(this::setAccessToken);
+
     }
 
     /**

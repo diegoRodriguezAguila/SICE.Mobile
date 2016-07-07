@@ -87,8 +87,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
-            android:textAppearance="@style/TextAppearance.Montserrat.Headline"
+            android:textAppearance="@style/TextAppearance.Montserrat.Light"
             android:textColor="@android:color/white"
+            android:textSize="16sp"
             tools:text="@string/msg_login_user"/>
     </LinearLayout>
 
@@ -108,8 +109,8 @@
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
             android:textAppearance="@style/TextAppearance.Montserrat.Light"
-            android:textColor="@color/txtErrorColor"
-            android:textSize="@dimen/txt_error_size"/>
+            android:textSize="16sp"
+            android:textColor="@color/txtErrorColor"/>
 
         <Button
             android:id="@+id/btn_clear_errors"

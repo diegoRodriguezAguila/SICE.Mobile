@@ -89,7 +89,7 @@ public class LoginFragment extends DialogFragment implements ILoginView {
     /**
      * Click for logIn button
      *
-     * @param v vista
+     * @param v view
      */
     @OnClick(R.id.btn_login)
     public void btnLoginClick(View v) {
@@ -97,6 +97,19 @@ public class LoginFragment extends DialogFragment implements ILoginView {
             KeyboardHelper.hideKeyboard(getDialog().getCurrentFocus());
             mPresenter.logIn();
         }
+    }
+
+    /**
+     * Click for clear errors button
+     *
+     * @param v view
+     */
+    @OnClick(R.id.btn_clear_errors)
+    public void btnClearErrorsClick(View v) {
+        mLayoutErrors.setVisibility(View.GONE);
+        mTxtToken.setText(null);
+        mLayoutLoginForm.setVisibility(View.VISIBLE);
+        mLayoutLoginForm.startAnimation(slideLeftAnim);
     }
 
     @Override
@@ -158,25 +171,34 @@ public class LoginFragment extends DialogFragment implements ILoginView {
 
     @Override
     public String getRegToken() {
-        String token = mTxtToken.getText().toString().trim()
-                .toLowerCase(Locale.getDefault());
+        String token = mTxtToken.getText().toString().trim();
         checkToken(token);
         return token;
     }
 
     @Override
     public void onProcessing(@StringRes int message) {
-
+        if (mLayoutLoading.getVisibility() != View.VISIBLE) {
+            mLayoutLoginForm.setVisibility(View.GONE);
+            mLayoutLoading.setVisibility(View.VISIBLE);
+            mLayoutLoading.startAnimation(slideLeftAnim);
+        }
+        mTxtWaitingMessage.setText(message);
     }
 
     @Override
     public void onError(Throwable error) {
-
+        mLayoutLoading.clearAnimation();
+        mLayoutLoading.setVisibility(View.GONE);
+        mTxtErrorMessage.setText(error.getMessage());
+        mLayoutErrors.setVisibility(View.VISIBLE);
+        mLayoutErrors.startAnimation(slideLeftAnim);
     }
 
     @Override
     public void onSuccess(String username) {
-
+        if (mListener != null)
+            mListener.onAuthenticated(username);
     }
 
     //endregion

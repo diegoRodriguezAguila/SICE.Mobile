@@ -3,6 +3,7 @@ package com.elfec.sice.presenter;
 import android.text.TextUtils;
 
 import com.elfec.sice.R;
+import com.elfec.sice.model.security.Session;
 import com.elfec.sice.presenter.views.ILoginView;
 import com.elfec.sice.security.SessionManager;
 import com.elfec.sice.web_services.ServiceErrorFactory;
@@ -29,9 +30,8 @@ public class LoginPresenter extends BasePresenter<ILoginView> {
         SessionManager.instance().logIn(username, regToken)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(session -> {
-                    mView.onSuccess(session.getUsername());
-                }, t -> mView.onError(ServiceErrorFactory
-                        .fromThrowable(t)));
+                .map(Session::getUsername)
+                .subscribe(mView::onSuccess, t ->
+                        mView.onError(ServiceErrorFactory.fromThrowable(t)));
     }
 }

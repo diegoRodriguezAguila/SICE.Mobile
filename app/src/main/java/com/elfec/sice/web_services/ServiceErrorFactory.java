@@ -19,22 +19,24 @@ public class ServiceErrorFactory {
 
     /**
      * Interpreta un throwable a una excepción
+     *
      * @param throwable throwable
      * @return excepción correspondiente al error recibido
      */
-    public static Exception fromThrowable(Throwable throwable){
+    public static Exception fromThrowable(Throwable throwable) {
+        throwable.printStackTrace();
         if (throwable instanceof JsonParseException)
             return new DataFormatException("La información recibida del servidor no es válida, " +
-                    "detalles: "+throwable.getMessage());
+                    "detalles: " + throwable.getMessage());
         if (throwable instanceof IOException)
             return new ServerConnectException();
         if (throwable instanceof HttpException) {
             HttpException e = (HttpException) throwable;
-            if (e.code()== HttpURLConnection.HTTP_INTERNAL_ERROR)
+            if (e.code() == HttpURLConnection.HTTP_INTERNAL_ERROR)
                 return new ServerSideException();
             return ApiExceptionFactory.build(e.response());
         }
-        if(throwable instanceof Exception)
+        if (throwable instanceof Exception)
             return (Exception) throwable;
         return ApiExceptionFactory.DEFAULT_ERROR;
     }

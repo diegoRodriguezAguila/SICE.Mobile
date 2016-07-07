@@ -5,5 +5,4 @@
     <dimen name="btn_top_margin">26dp</dimen>
     <dimen name="edit_text_top_margin">22dp</dimen>
     <dimen name="login_progress_size">40dp</dimen>
-    <dimen name="txt_error_size">19sp</dimen>
 </resources>
