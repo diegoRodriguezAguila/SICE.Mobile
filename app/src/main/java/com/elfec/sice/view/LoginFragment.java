@@ -95,7 +95,7 @@ public class LoginFragment extends DialogFragment implements ILoginView {
     public void btnLoginClick(View v) {
         if (ButtonClicksHelper.canClickButton()) {
             KeyboardHelper.hideKeyboard(getDialog().getCurrentFocus());
-            mPresenter.login();
+            mPresenter.logIn();
         }
     }
 

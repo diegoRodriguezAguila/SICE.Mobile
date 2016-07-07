@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import com.elfec.sice.model.security.AccessToken;
-
 import java.lang.ref.SoftReference;
 
 /**
@@ -16,7 +14,6 @@ import java.lang.ref.SoftReference;
 public class AppPreferences {
     private final String AUTH_TOKEN = "ws-token";
     private final String TOKEN_TYPE = "ws-token-type";
-    private final String REGISTRATION_TOKEN = "reg-token";
 
     /**
      * Contexto de app
@@ -63,60 +60,41 @@ public class AppPreferences {
     }
 
     /**
-     * Obtiene el token de registración, guardado por el usuario
-     *
-     * @return null si es que aun no se registró token
+     * Gets the saved token type
+     * @return token type or null if no token is registered
      */
-    public String getRegistrationToken() {
-        return preferences.getString(REGISTRATION_TOKEN, null);
+    public String getTokenType(){
+        return preferences.getString(TOKEN_TYPE, null);
     }
 
     /**
-     * Asigna el token de registración, que se utilizará para obtener un token de autenticación
-     * en los web services
-     *
-     * @return la instancia actual de {@link AppPreferences}
+     * Sets the token type
+     * @param tokenType token type
+     * @return current instance of {@link AppPreferences}
      */
-    public AppPreferences setRegistrationToken(String loggedUsername) {
-        preferences.edit().putString(REGISTRATION_TOKEN, loggedUsername).apply();
+    public AppPreferences setTokenType(String tokenType){
+        preferences.edit().putString(TOKEN_TYPE, tokenType).apply();
         return this;
     }
 
     /**
-     * Obtiene el token de autenticación para webservices
-     *
-     * @return null si es que no se autenticó el token de registración
+     * Gets the saved authentication token
+     * @return auth token or null if no token is registered
      */
-    public AccessToken getAccessToken() {
-        String tokenType = preferences.getString(TOKEN_TYPE, null);
-        String token = preferences.getString(AUTH_TOKEN, null);
-        if (tokenType == null || token == null)
-            return null;
-        return new AccessToken(token, tokenType);
+    public String getAuthToken(){
+        return preferences.getString(AUTH_TOKEN, null);
     }
 
     /**
-     * Asigna el token de autenticación para webservices, sobreescribe cualquier token que haya
-     * sido guardado antes
-     *
-     * @return la instancia actual de {@link AppPreferences}
+     * Sets the authentication token
+     * @param authToken authentication token
+     * @return current instance of {@link AppPreferences}
      */
-    public AppPreferences setAccessToken(String tokenType, String token) {
-        preferences.edit().putString(AUTH_TOKEN, token)
-                .putString(TOKEN_TYPE, tokenType).apply();
+    public AppPreferences setAuthToken(String authToken){
+        preferences.edit().putString(AUTH_TOKEN, authToken).apply();
         return this;
     }
 
-    /**
-     * Verifica si existe un token de autenticación registrado.
-     * Si existe el usuario está autenticado
-     * @return true si el usuario está autenticado
-     */
-    public boolean isAuthenticated() {
-        String tokenType = preferences.getString(TOKEN_TYPE, null);
-        String token = preferences.getString(AUTH_TOKEN, null);
-        return tokenType != null && token != null;
-    }
 
     /**
      * Elimina la instancia cacheada junto con su contexto
