@@ -10,6 +10,13 @@
     <string name="error_reg_token_empty">El token de registro no puede estar vacío</string>
     <string name="msg_login_user">Validando información de usuario empresarial&#8230;</string>
 
+    <!-- Outages -->
+    <string name="outage_date_format">EEEE, dd \'de\' MMMM, yyyy</string>
+    <string name="lbl_time_range">De %1$s a %2$s</string>
+    <string name="outage_time_format">HH:mm</string>
+    <string name="lbl_loading_outages">Cargando cortes programados&#8230;</string>
+    <string name="lbl_loading_more_outages">Cargando más cortes programados&#8230;</string>
+    <string name="msg_no_outages">Actualmente no hay ningún corte programado para mostrar</string>
 
     <!-- Buttons -->
     <string name="btn_ok">Aceptar</string>

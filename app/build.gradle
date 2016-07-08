@@ -42,7 +42,7 @@ dependencies {
 
     //UI
     compile 'com.pnikosis:materialish-progress:1.7'
-    compile 'com.h6ah4i.android.widget.advrecyclerview:advrecyclerview:0.9.2@aar'
+    compile 'com.malinskiy:superrecyclerview:1.1.4'
     compile 'uk.co.chrisjenx:calligraphy:2.2.0'
     compile 'com.jakewharton:butterknife:8.0.1'
     apt 'com.jakewharton:butterknife-compiler:8.0.1'

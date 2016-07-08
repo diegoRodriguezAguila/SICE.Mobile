@@ -5,8 +5,11 @@ import android.support.annotation.Nullable;
 
 import com.elfec.sice.BuildConfig;
 import com.elfec.sice.model.security.AccessToken;
+import com.elfec.sice.model.web_services.serializers.DateTimeConverter;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.GsonBuilder;
+
+import org.joda.time.DateTime;
 
 import java.lang.ref.WeakReference;
 
@@ -99,7 +102,9 @@ public class ServiceGenerator {
                     .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create(
                             new GsonBuilder().setFieldNamingPolicy(
-                                    FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create())));
+                                    FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
+                                    .registerTypeAdapter(DateTime.class, new DateTimeConverter())
+                                    .create())));
         return sBuilder.get();
     }
 

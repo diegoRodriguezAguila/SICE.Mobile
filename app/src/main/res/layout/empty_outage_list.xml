@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+              android:padding="@dimen/activity_horizontal_margin"
+    android:gravity="center_horizontal|top"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_marginTop="@dimen/edit_text_top_margin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/msg_no_outages"
+        android:textAppearance="@style/TextAppearance.Montserrat.Light"
+        android:textSize="18sp" />
+
+</LinearLayout>

@@ -27,11 +27,11 @@
     </style>
 
     <style name="TextAppearance.Montserrat.Subhead" parent="TextAppearance.AppCompat.Subhead">
-        <item name="fontPath">fonts/montserrat.otf</item>
+        <item name="fontPath">fonts/montserrat_light.otf</item>
     </style>
 
     <style name="TextAppearance.Montserrat.Body1" parent="TextAppearance.AppCompat.Body1">
-        <item name="fontPath">fonts/montserrat</item>
+        <item name="fontPath">fonts/montserrat_light.otf</item>
     </style>
 
     <style name="Widget.Elfec.Sice.Button.Negative"
