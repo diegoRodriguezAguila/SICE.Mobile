@@ -128,7 +128,7 @@ public class LoginFragment extends DialogFragment implements ILoginView {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         View view = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_login, null, false);
         ButterKnife.bind(this, view);
-        slideLeftAnim = AnimationUtils.loadAnimation(getContext(), R.anim.slide_left_in);
+        slideLeftAnim = AnimationUtils.loadAnimation(getContext(), R.anim.metro_slide_left_in);
         mTxtToken.setTransformationMethod(MetroPasswordTransformationMethod.getInstance());
         mPresenter = new LoginPresenter(this);
         return new AlertDialog.Builder(getActivity(), R.style.Theme_Elfec_Sice_AlertDialog)

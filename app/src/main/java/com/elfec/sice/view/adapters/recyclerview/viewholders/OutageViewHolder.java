@@ -1,12 +1,16 @@
 package com.elfec.sice.view.adapters.recyclerview.viewholders;
 
 import android.content.Context;
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
 import com.elfec.sice.R;
+import com.elfec.sice.helpers.ui.ButtonClicksHelper;
 import com.elfec.sice.model.Outage;
+import com.elfec.sice.view.PowerPolesActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -15,7 +19,7 @@ import butterknife.ButterKnife;
  * Created by drodriguez on 08/07/2016.
  * viewholder for outages
  */
-public class OutageViewHolder extends RecyclerView.ViewHolder{
+public class OutageViewHolder extends RecyclerView.ViewHolder {
 
     @BindView(R.id.lbl_day)
     protected TextView mTxtDay;
@@ -32,7 +36,7 @@ public class OutageViewHolder extends RecyclerView.ViewHolder{
         mRootView = itemView;
     }
 
-    public void bindOutage(Outage outage){
+    public void bindOutage(Outage outage) {
         final Context context = mRootView.getContext();
         mTxtDay.setText(outage.getStartDate()
                 .toString(context.getString(R.string.outage_date_format)));
@@ -40,5 +44,16 @@ public class OutageViewHolder extends RecyclerView.ViewHolder{
                 outage.getStartDate().toString(context.getString(R.string.outage_time_format)),
                 outage.getEndDate().toString(context.getString(R.string.outage_time_format))));
         mTxtZones.setText(outage.getZones());
+        mRootView.setOnClickListener(view -> {
+            if (!ButtonClicksHelper.canClickButton())
+                return;
+            Intent powerPoles = new Intent(context, PowerPolesActivity.class);
+            //powerPoles.putExtra(null, student.getFullName());
+            context.startActivity(powerPoles);
+            if (context instanceof AppCompatActivity)
+                ((AppCompatActivity) context)
+                        .overridePendingTransition(R.anim.slide_left_in, R.anim.slide_left_out);
+
+        });
     }
 }

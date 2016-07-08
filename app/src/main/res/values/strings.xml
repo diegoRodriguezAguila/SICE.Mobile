@@ -20,4 +20,5 @@
 
     <!-- Buttons -->
     <string name="btn_ok">Aceptar</string>
+    <string name="title_activity_power_poles">Postes de Corte</string>
 </resources>

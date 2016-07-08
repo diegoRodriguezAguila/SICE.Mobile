@@ -4,6 +4,8 @@ import com.elfec.sice.model.enums.ApiStatus;
 
 import org.joda.time.DateTime;
 
+import java.util.List;
+
 /**
  * Created by drodriguez on 08/07/2016.
  * Outage model
@@ -18,9 +20,15 @@ public class Outage {
     private String hospitals;
     private String radioAntennas;
     private String farms;
+    private List<PowerPole> powerPoles;
     private ApiStatus status;
 
     //region getters setters
+
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getId() {
         return id;
@@ -88,6 +96,14 @@ public class Outage {
 
     public void setFarms(String farms) {
         this.farms = farms;
+    }
+
+    public List<PowerPole> getPowerPoles() {
+        return powerPoles;
+    }
+
+    public void setPowerPoles(List<PowerPole> powerPoles) {
+        this.powerPoles = powerPoles;
     }
 
     public ApiStatus getStatus() {
