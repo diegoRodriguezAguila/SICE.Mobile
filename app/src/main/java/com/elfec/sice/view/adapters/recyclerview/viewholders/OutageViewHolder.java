@@ -48,7 +48,7 @@ public class OutageViewHolder extends RecyclerView.ViewHolder {
             if (!ButtonClicksHelper.canClickButton())
                 return;
             Intent powerPoles = new Intent(context, PowerPolesActivity.class);
-            //powerPoles.putExtra(null, student.getFullName());
+            powerPoles.putExtra(PowerPolesActivity.OUTAGE_ID, outage.getId());
             context.startActivity(powerPoles);
             if (context instanceof AppCompatActivity)
                 ((AppCompatActivity) context)

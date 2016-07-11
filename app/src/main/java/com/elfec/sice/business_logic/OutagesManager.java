@@ -16,6 +16,7 @@ public class OutagesManager {
 
     /**
      * Connects to ws to get scheduled outages
+     *
      * @param page page number
      * @return observable for paginated list of outages
      */
@@ -24,5 +25,19 @@ public class OutagesManager {
                 .create(OutageService.class,
                         SessionManager.instance().getAccessToken())
                 .getScheduledOutages(page);
+    }
+
+    /**
+     * Conects to ws to get the details of a scheduled outage
+     *
+     * @param id scheduled outage's id
+     * @return observable of the result outage
+     */
+    public static Observable<Outage> scheduledOutageDetails(int id) {
+        String containDetails = "PowerPoles.SupportedCompanies";
+        return ServiceGenerator
+                .create(OutageService.class,
+                        SessionManager.instance().getAccessToken())
+                .scheduledOutage(id, containDetails);
     }
 }

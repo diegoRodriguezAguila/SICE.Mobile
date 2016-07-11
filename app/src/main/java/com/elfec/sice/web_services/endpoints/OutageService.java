@@ -4,6 +4,7 @@ import com.elfec.sice.model.Outage;
 import com.elfec.sice.model.web_services.PaginatedList;
 
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 import rx.Observable;
 
@@ -14,4 +15,8 @@ import rx.Observable;
 public interface OutageService {
     @GET("scheduled_outages")
     Observable<PaginatedList<Outage>> getScheduledOutages(@Query("page") Integer page);
+
+    @GET("scheduled_outages/{id}")
+    Observable<Outage> scheduledOutage(@Path("id") int outageId,
+                                                      @Query("contain") String contain);
 }

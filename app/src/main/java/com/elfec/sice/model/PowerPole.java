@@ -2,6 +2,8 @@ package com.elfec.sice.model;
 
 import com.elfec.sice.model.enums.ApiStatus;
 
+import java.util.List;
+
 /**
  * Created by drodriguez on 08/07/2016.
  * Power pole model
@@ -16,6 +18,7 @@ public class PowerPole {
     private String poleType;
     private double latitude;
     private double longitude;
+    private List<SupportedCompany> supportedCompanies;
     private ApiStatus status;
 
     //region getter setters
@@ -90,6 +93,14 @@ public class PowerPole {
 
     public void setLongitude(double longitude) {
         this.longitude = longitude;
+    }
+
+    public List<SupportedCompany> getSupportedCompanies() {
+        return supportedCompanies;
+    }
+
+    public void setSupportedCompanies(List<SupportedCompany> supportedCompanies) {
+        this.supportedCompanies = supportedCompanies;
     }
 
     public ApiStatus getStatus() {
