@@ -18,6 +18,13 @@
     <string name="lbl_loading_more_outages">Cargando más cortes programados&#8230;</string>
     <string name="msg_no_outages">Actualmente no hay ningún corte programado para mostrar</string>
 
+    <!-- PowerPoles -->
+    <string name="pole_description_format"><![CDATA[Poste de <b>%1$s %2$s</b>]]></string>
+    <string name="pole_condition_format"><![CDATA[Estado: <b>%1$s</b>]]></string>
+    <string name="pole_owner_format"><![CDATA[Propietario: <b>%1$s</b>]]></string>
+    <string name="pole_supports_format"><![CDATA[Apoyos: <b>%1$s</b>]]></string>
+    <string name="msg_no_power_poles">El corte programado no tiene postes afectados</string>
+
     <!-- Buttons -->
     <string name="btn_ok">Aceptar</string>
     <string name="title_activity_power_poles">Postes de Corte</string>

@@ -14,6 +14,11 @@ public class SupportedCompany {
     private int amount;
     private ApiStatus status;
 
+    @Override
+    public String toString(){
+        return company;
+    }
+
     //region getter setters
 
     public int getId() {
