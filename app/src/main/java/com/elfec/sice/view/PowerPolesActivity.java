@@ -11,6 +11,7 @@ import com.elfec.sice.model.Outage;
 import com.elfec.sice.model.PowerPole;
 import com.elfec.sice.presenter.PowerPolesPresenter;
 import com.elfec.sice.presenter.views.IPowerPolesView;
+import com.elfec.sice.view.adapters.marker.MarkerPopupAdapter;
 import com.elfec.sice.web_services.ServiceErrorFactory;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -19,6 +20,7 @@ import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +32,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 public class PowerPolesActivity extends FragmentActivity implements IPowerPolesView {
 
     public static final String OUTAGE_ID = "outage-id";
-    private static final float DEFAULT_ZOOM = 16-5f;
+    private static final float DEFAULT_ZOOM = 16.5f;
 
     private PowerPolesPresenter mPresenter;
 
@@ -78,20 +80,35 @@ public class PowerPolesActivity extends FragmentActivity implements IPowerPolesV
 
     public Outage onMapAndOutageReady(GoogleMap googleMap, Outage outage) {
         mMap = googleMap;
+        mMap.setInfoWindowAdapter(new MarkerPopupAdapter(this));
 
-        List<LatLng> points = new ArrayList<>();
-        for (PowerPole pole: outage.getPowerPoles()) {
-            mMap.addMarker(new MarkerOptions()
-                    .position(new LatLng(pole.getLatitude(),
-                    pole.getLongitude()))
-                    .title("Poste: "+pole.getPoleCode())
-                    .icon(mBitmapPowerPole));
-            points.add(new LatLng(pole.getLatitude(), pole.getLongitude()));
-        }
-        LatLng center = GoogleMapUtils.calculateCenter(points);
+        LatLng center = addMarkers(outage);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(center, DEFAULT_ZOOM));
 
         return outage;
+    }
+
+    /**
+     * Adds the markers of the power poles to the map. Also returns the average center of
+     * all the power poles
+     *
+     * @param outage outage
+     * @return point of center of power poles
+     */
+    private LatLng addMarkers(Outage outage) {
+        if (outage.getPowerPoles() == null || outage.getPowerPoles().size() == 0) {
+            Toast.makeText(PowerPolesActivity.this, R.string.msg_no_power_poles, Toast.LENGTH_LONG).show();
+        }
+        List<LatLng> points = new ArrayList<>();
+        Gson gson = new Gson();
+        for (PowerPole pole : outage.getPowerPoles()) {
+            LatLng point = new LatLng(pole.getLatitude(), pole.getLongitude());
+            mMap.addMarker(new MarkerOptions()
+                    .position(point).snippet(gson.toJson(pole))
+                    .title(pole.getPoleCode()).icon(mBitmapPowerPole));
+            points.add(point);
+        }
+        return GoogleMapUtils.calculateCenter(points);
     }
 
 

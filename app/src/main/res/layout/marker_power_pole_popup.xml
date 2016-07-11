@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:padding="10dp"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/lbl_pole_code"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimary"
+        tools:text="D15C2"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:id="@+id/lbl_pole_description"
+        android:layout_width="@dimen/marker_popup_txt_width"
+        android:gravity="top"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="@color/txtBlack"
+        tools:text="Poste de Hormigón BT"/>
+
+    <TextView
+        android:id="@+id/lbl_pole_condition"
+        android:layout_width="@dimen/marker_popup_txt_width"
+        android:layout_height="wrap_content"
+        android:gravity="top"
+        android:textSize="16sp"
+        android:textColor="@color/txtBlack"
+        tools:text="Estado: Bueno"/>
+
+    <TextView
+        android:id="@+id/lbl_pole_owner"
+        android:layout_width="@dimen/marker_popup_txt_width"
+        android:gravity="top"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="@color/txtBlack"
+        tools:text="Propietario: Elfec"/>
+    <TextView
+        android:id="@+id/lbl_supported_companies"
+        android:layout_width="@dimen/marker_popup_txt_width"
+        android:gravity="top"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="@color/txtBlack"
+        tools:text="Apoyos: Comteco, Entel"/>
+</LinearLayout>

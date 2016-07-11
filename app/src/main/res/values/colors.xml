@@ -6,4 +6,5 @@
     <color name="backgroundColor">#303030</color>
     <color name="negativeButtonBackground">#EFEFEF</color>
     <color name="txtErrorColor">#B23426</color>
+    <color name="txtBlack">#212121</color>
 </resources>
